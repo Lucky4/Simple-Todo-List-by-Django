@@ -28,4 +28,4 @@
 
 #Usage Step
 Todo List首页，包括可Undo list和Complete List
-![](https://cl.ly/0s0T0F093U0H)
+![首页](https://github.com/lucky4/Simple-Todo-List-by-Django/raw/master/screenshot/index.png)
