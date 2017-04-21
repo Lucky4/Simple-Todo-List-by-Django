@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load rest_framework %}
+
+{% block content %}
+  {% block modal%}
+  {% endblock %}
+
+  <div class="row marketing">
+    <div>
+      <h4 class="text-center">Undo List</h4>
+      {% if todo_lists %}
+        <div class="btn-group">
+          <button type="button" class="btn btn btn-default">Sort</button>
+          <button type="button" class="btn btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="{% url "sortbyprio" %}">sort by priority</a></li>
+            <li><a href="{% url "sortbyexpire" %}">sort by expire time</a></li>
+          </ul>
+        </div>
+        <br><br>
+
+        <table class="table table-condensed" cellspacing="0" cellpadding="0" border="0" width="100%">
+        {% for todo_list in todo_lists %}
+            {% if todo_list.priority == 0 %}
+            <tr>
+            {% elif todo_list.priority == 1 %}
+            <tr class="warning">
+            {% elif todo_list.priority == 2 %}
+            <tr class="danger">
+            {% endif %}
+              <td>
+                {{ todo_list.todo }}
+              </td>
+              <td>
+              {% if todo_list.flag == 0 %}
+                <a href="{% url "finishtask" todo_list.id %}">
+                  <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                </a>
+              {% endif %}
+              </td>
+              <td>
+                <a href="{% url "edittask" todo_list.id %}">
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </a>
+              </td>
+              <td>
+                <a href="{% url "deletetask" todo_list.id %}">
+                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </a>
+              </td>
+            </tr>
+        {% endfor %}
+        </table>
+      {% else %}
+        <h5>最近没有任务</h5>
+      {% endif %}
+    </div>
+    
+    <div class="add-button">
+      <a class="btn btn-lg btn-success btn-sm" href="{% url "addtask" %}" role="button" >
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <span class="glyphicon-class">add task</span>
+      </a>
+    </div>
+
+    {% if todo_lists %}
+      <nav aria-label="...">
+        <ul class="pager">
+        {% if todo_lists.has_previous %}
+          <li class="previous">
+            <a href="?todo_page={{ todo_lists.previous_page_number }}">←Older</a>
+          </li>
+        {% elif not todo_lists.has_previous %}
+          <li class="previous disabled">
+            <a href="#">←Older</a>
+          </li>
+        {% endif %}
+        
+        {% if todo_lists.has_next %}
+          <li class="next">
+            <a href="?todo_page={{ todo_lists.next_page_number }}">Newer→</a>
+          </li>
+        {% elif not todo_lists.has_next %}
+          <li class="next disabled">
+            <a href="#">Newer→</a>
+          </li>
+        {% endif %}
+          </li>
+        </ul>
+      </nav>
+    {% endif %}
+    <br><br><br>
+
+    <div>
+      <h4 class="text-center">Complete List</h4>
+      {% if finish_lists %}
+      <div class="btn-group">
+        <button type="button" class="btn btn btn-default">Sort</button>
+        <button type="button" class="btn btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="{% url "sortbyprio" %}">sort by priority</a></li>
+          <li><a href="{% url "sortbyexpire" %}">sort by expire time</a></li>
+        </ul>
+      </div>
+      <br><br>
+
+      <table class="table table-condensed" cellspacing="0" cellpadding="0" border="0" width="100%">
+        {% for finish_list in finish_lists %}
+        <tr>
+          <td>
+            {{ finish_list.todo }}
+          </td>
+          <td>
+            <a href="{% url "backtask" finish_list.id %}">
+              <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+    </div>
+
+    {% if finish_lists %}
+      <nav aria-label="...">
+        <ul class="pager">
+        {% if todo_lists.has_previous %}
+          <li class="previous">
+            <a href="?todo_page={{ todo_lists.previous_page_number }}">←Older</a>
+          </li>
+        {% elif not todo_lists.has_previous %}
+          <li class="previous disabled">
+            <a href="#">←Older</a>
+          </li>
+        {% endif %}
+        
+        {% if todo_lists.has_next %}
+          <li class="next">
+            <a href="?todo_page={{ todo_lists.next_page_number }}">Newer→</a>
+          </li>
+        {% elif not todo_lists.has_next %}
+          <li class="next disabled">
+            <a href="#">Newer→</a>
+          </li>
+        {% endif %}
+          </li>
+        </ul>
+      </nav>
+    {% endif %}
+  </div>
+{% endblock %}
+
+
+
+
+{% block js %}
+<script type="text/javascript" src="{% static "js/index.js" %}"></script>
+{% endblock %}

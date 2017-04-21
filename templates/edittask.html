@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% load rest_framework %}
+
+{% block modal %}
+<p hidden="hidden" id="hidden-todo" name="{{ todoinfo.todo }}"></p>
+<p hidden="hidden" id="hidden-priority" name="{{ todoinfo.priority }}"></p>
+<p hidden="hidden" id="hidden-expire" name="{{ todoinfo.expire_time }}"></p>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit TODO</h4>
+      </div>
+      <form method="post" action="">
+	      <div class="modal-body">
+			  {% csrf_token %}
+			  {% render_form serializer %}
+	      </div>
+	      <div class="modal-footer">
+	        <button type="submit" class="btn btn-primary">Save changes</button>
+	      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{% static "js/edittask.js" %}"></script>
+{% endblock %}
