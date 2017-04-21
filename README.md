@@ -2,7 +2,7 @@
 
 #Overview
 
-    A simple web application called Todo List.This is the pre work of my remote job test.
+A simple web application called Todo List.This is the pre work of my remote job test.
 
 #Requirements
 * Windows7
@@ -25,3 +25,5 @@
 7. 待办事项可以设置优先级
 8. 待办事项可以设置expire date
 9. 支持按照不同的方式排序，如优先级，expire date
+
+#Usage Step
