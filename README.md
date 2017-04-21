@@ -2,7 +2,7 @@
 
 #Overview
 
-A simple web application called Todo List.This is the pre work of my remote job test.
+  A simple web application called Todo List.This is the pre work of my remote job test.
 
 #Requirements
 * Windows7
@@ -27,3 +27,5 @@ A simple web application called Todo List.This is the pre work of my remote job 
 9. 支持按照不同的方式排序，如优先级，expire date
 
 #Usage Step
+Todo List首页，包括可Undo list和Complete List
+![](https://cl.ly/0s0T0F093U0H)
