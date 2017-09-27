@@ -2,7 +2,7 @@
 
 #Overview
 
-  A simple web application called Todo List.This is the pre work of my remote job test.
+  A simple web application called Todo List.
 
 #Requirements
 * Windows7
