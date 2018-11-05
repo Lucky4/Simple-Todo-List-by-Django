@@ -1,10 +1,10 @@
 # Simple-Todo-List-by-Django
 
-#Overview
+# Overview
 
   A simple web application called Todo List.
 
-#Requirements
+# Requirements
 * Windows7
 * Python2.7
 * Django1.8
@@ -15,7 +15,7 @@
 * virtualenv
   
 
-#Done
+# Done
 1. 增加一个待办事项
 2. 删除一个待办事项
 3. 标记一个待办事项为已完成
